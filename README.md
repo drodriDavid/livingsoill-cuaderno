@@ -70,12 +70,12 @@ Antes de cifrar hay que validar el JavaScript de `fuente.html` y de `puerta.html
 
 **PowerShell** (la consola por defecto de Windows):
 
-    cd C:/GEU/livingsoill-cuaderno
+    cd C:/ProyectosUJA/livingsoill-cuaderno
     .\publicar.ps1
 
 **Git Bash / WSL:**
 
-    cd C:/GEU/livingsoill-cuaderno && ./publicar.sh
+    cd C:/ProyectosUJA/livingsoill-cuaderno && ./publicar.sh
 
 La clave se lee de `clave.txt`. Para cambiarla, pásala como argumento; si lo haces, **borra
 `clave-cuaderno.txt` de la carpeta de Drive** y entra una vez para dejar la nueva.
