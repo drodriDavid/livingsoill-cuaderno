@@ -94,8 +94,19 @@ h1 em{
   color:var(--ink-3); line-height:1.45;
 }
 
-.acceso{display:flex; align-items:center; justify-content:center; padding:56px 5vw; background:var(--paper)}
-.acceso-in{width:100%; max-width:372px}
+/* El lado de entrar lleva la foto del olivar de Jaén (UJA · EU Missions) con
+   un velo suave; la tarjeta de acceso va sólida encima para que se lea bien. */
+.acceso{
+  display:flex; align-items:center; justify-content:center; padding:56px 5vw;
+  background:
+    linear-gradient(180deg, rgba(14,18,14,.26), rgba(14,18,14,.44)),
+    url("__FOTO_PUERTA__") center / cover no-repeat,
+    var(--paper);
+}
+.acceso-in{
+  width:100%; max-width:392px; background:var(--paper); border-radius:12px;
+  padding:30px 28px 26px; box-shadow:0 28px 70px -26px rgba(0,0,0,.55);
+}
 
 .sello{
   font-family:"IBM Plex Mono",monospace; font-size:10px; font-weight:500; letter-spacing:.16em;
@@ -248,7 +259,6 @@ html.listo .horizonte{animation:none !important}
     <section class="campo">
       <div class="campo-in">
         <img class="logo" src="__LOGO__" alt="LivingSoiLL">
-        <p class="eyebrow">Living Lab andaluz del suelo &middot; olivar</p>
         <h1>Cuaderno digital del LivingSoiLL<em>Living Lab Andaluz</em></h1>
         <p class="lede">
           La gesti&oacute;n del proyecto finca a finca: actuaciones y costes, muestreos,
@@ -267,8 +277,7 @@ html.listo .horizonte{animation:none !important}
         <p class="sello">Acceso restringido</p>
         <h2>Entrar</h2>
         <p class="acceso-lede">
-          Con tu cuenta de la Universidad de Ja&eacute;n. El cuaderno se descifra en tu propio
-          navegador y se sincroniza solo.
+          Acceso reservado al equipo del proyecto, con cuenta de Google autorizada.
         </p>
 
         <button type="button" class="entrar" id="entrar">
