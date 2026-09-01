@@ -49,7 +49,7 @@ body{
    tarjeta flotante con todo: marca, cifras y acceso. */
 .hoja{
   position:relative; min-height:100vh; min-height:100dvh;
-  display:flex; align-items:center; padding:6vh 7vw; background:var(--paper);
+  display:flex; padding:5vh 6vw; background:var(--paper);
 }
 .hoja::before{
   content:""; position:absolute; inset:0;
@@ -57,12 +57,14 @@ body{
 }
 .hoja::after{
   content:""; position:absolute; inset:0;
-  background:linear-gradient(100deg, rgba(8,16,11,.36), rgba(8,16,11,.10) 58%, rgba(8,16,11,.24));
+  background:linear-gradient(180deg, rgba(8,16,11,.32), rgba(8,16,11,.10) 45%, rgba(8,16,11,.30));
 }
 
+/* margin:auto y no align-items: centra la tarjeta y, si la ventana es baja,
+   deja hacer scroll en vez de cortarla por arriba. */
 .panel{
-  position:relative; z-index:1; width:min(600px,100%);
-  background:var(--paper); border-radius:18px; padding:42px 46px 28px;
+  position:relative; z-index:1; width:min(640px,100%); margin:auto;
+  background:var(--paper); border-radius:18px; padding:40px 46px 26px;
   box-shadow:0 42px 100px -34px rgba(0,0,0,.62);
 }
 .entrada{margin-top:26px; padding-top:22px; border-top:1px solid var(--line)}
@@ -91,19 +93,31 @@ h1 em{
 .lede{color:var(--ink-2); font-size:15.5px; line-height:1.62; margin:22px 0 0; max-width:46ch}
 
 .cifras{
-  display:flex; gap:0; margin:34px 0 0; padding:16px 0 0; flex-wrap:wrap;
-  border-top:1px solid var(--line);
+  display:grid; grid-template-columns:repeat(3,1fr); gap:18px 0;
+  margin:26px 0 0; padding:16px 0 0; border-top:1px solid var(--line);
 }
-.cifras > div{margin:0; padding:0 28px; border-left:1px solid var(--line-2)}
-.cifras > div:first-child{padding-left:0; border-left:0}
+.cifras > div{margin:0; padding:0 22px; border-left:1px solid var(--line-2); min-width:0}
+.cifras > div:nth-child(3n+1){padding-left:0; border-left:0}
 .cifras dt{
-  font-family:"IBM Plex Mono",monospace; font-weight:500; font-size:27px; line-height:1;
+  font-family:"IBM Plex Mono",monospace; font-weight:500; font-size:25px; line-height:1;
   letter-spacing:-.03em; color:var(--suelo); font-variant-numeric:tabular-nums;
+  white-space:nowrap;
 }
 .cifras dd{
-  margin:7px 0 0; font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+  margin:7px 0 0; font-size:10.5px; letter-spacing:.09em; text-transform:uppercase;
   color:var(--ink-3); line-height:1.45;
 }
+
+.dentro{margin:22px 0 0; padding:14px 0 0; border-top:1px solid var(--line)}
+.dentro ul{
+  list-style:none; margin:10px 0 0; padding:0;
+  display:grid; grid-template-columns:1fr 1fr; gap:8px 20px;
+}
+.dentro li{
+  font-size:12.5px; color:var(--ink-2); line-height:1.5;
+  display:flex; gap:8px;
+}
+.dentro li::before{content:"▪"; color:var(--brote); flex:none}
 
 .sello{
   font-family:"IBM Plex Mono",monospace; font-size:10px; font-weight:500; letter-spacing:.16em;
@@ -199,15 +213,26 @@ html.listo .panel-in > *{animation:none !important}
   .panel{padding:28px 24px 20px; border-radius:14px}
   .logo{width:min(300px,94%); margin-bottom:22px}
   h1{font-size:27px}
+  .lede{font-size:14.5px}
+  .cifras{gap:14px 0}
+  .cifras > div{padding:0 14px}
+  .cifras dt{font-size:19px; white-space:normal; word-break:keep-all}
+  .cifras dd{font-size:9.5px; letter-spacing:.06em}
+  .dentro ul{grid-template-columns:1fr}
 }
-@media (min-width:641px) and (max-height:820px){
-  .panel{padding:32px 40px 22px}
-  .logo{width:300px; margin-bottom:20px}
-  h1{font-size:clamp(26px,3vw,34px)}
-  .lede{margin-top:16px; font-size:14.5px}
-  .cifras{margin-top:22px; padding-top:14px}
-  .cifras dt{font-size:23px}
-  .entrada{margin-top:20px; padding-top:18px}
+@media (min-width:641px) and (max-height:980px){
+  .panel{padding:30px 40px 20px}
+  .logo{width:280px; margin-bottom:18px}
+  h1{font-size:clamp(25px,3vw,32px)}
+  .lede{margin-top:14px; font-size:14px}
+  .cifras{margin-top:18px; padding-top:12px; gap:12px 0}
+  .cifras dt{font-size:21px}
+  .dentro{margin-top:16px; padding-top:12px}
+  .dentro ul{gap:6px 16px}
+  .dentro li{font-size:12px}
+  .entrada{margin-top:18px; padding-top:16px}
+  .entrar{margin-top:20px; padding:11px 16px}
+  .pie{margin-top:18px}
 }
 @media (max-width:420px){
   .cifras > div{padding:0 16px}
@@ -237,7 +262,20 @@ html.listo .panel-in > *{animation:none !important}
           <div><dt>16</dt><dd>fincas<br>experimentales</dd></div>
           <div><dt>42</dt><dd>zonas<br>test y control</dd></div>
           <div><dt>8</dt><dd>provincias<br>de Andaluc&iacute;a</dd></div>
+          <div><dt>10</dt><dd>soluciones<br>S01&ndash;S10</dd></div>
+          <div><dt>1,08&nbsp;M&euro;</dt><dd>presupuesto<br>UJA</dd></div>
+          <div><dt>2028</dt><dd>final del proyecto<br>(noviembre)</dd></div>
         </dl>
+
+        <div class="dentro">
+          <p class="sello">Qu&eacute; hay dentro</p>
+          <ul>
+            <li>La ficha de cada finca: actuaciones, costes y proveedores</li>
+            <li>Muestreos de suelo 2025 y 2026, finca a finca</li>
+            <li>Las campa&ntilde;as comparadas y la propuesta de oto&ntilde;o</li>
+            <li>Tareas, notas y reuniones del equipo, sincronizadas</li>
+          </ul>
+        </div>
 
         <div class="entrada">
         <p class="sello">Acceso reservado al equipo del proyecto</p>
@@ -270,7 +308,7 @@ html.listo .panel-in > *{animation:none !important}
         <p class="msg" id="m" role="status" aria-live="polite"></p>
         </div>
 
-        <p class="pie">Universidad de Ja&eacute;n</p>
+        <p class="pie">Universidad de Ja&eacute;n &middot; EU Mission Soil &middot; Horizonte Europa &middot; GA 101157502</p>
       </div>
     </section>
 
