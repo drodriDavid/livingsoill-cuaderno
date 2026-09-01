@@ -65,15 +65,12 @@ body{
 }
 .campo-in{max-width:520px}
 
-/* El logo va siempre sobre blanco: su trazo es verde muy oscuro. */
-.logo{
-  display:block; width:min(150px,42%); height:auto; margin:0 0 30px;
-  background:#FFFFFF; border-radius:4px;
-}
+/* El logotipo completo (wordmark), a buen tamaño y sin caja alrededor. */
+.logo{display:block; width:min(360px,88%); height:auto; margin:0 0 30px}
 @media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]) .logo{padding:10px; margin-left:-10px}
+  :root:not([data-theme="light"]) .logo{background:#FFFFFF; border-radius:8px; padding:12px 14px; margin-left:-14px}
 }
-:root[data-theme="dark"] .logo{padding:10px; margin-left:-10px}
+:root[data-theme="dark"] .logo{background:#FFFFFF; border-radius:8px; padding:12px 14px; margin-left:-14px}
 
 .eyebrow{
   font-family:"IBM Plex Mono",monospace; font-size:10.5px; font-weight:500; letter-spacing:.17em;
@@ -252,7 +249,7 @@ html.listo .acceso-in > *{animation:none !important}
 
     <section class="campo">
       <div class="campo-in">
-        <img class="logo" src="__LOGO__" alt="LivingSoiLL">
+        <img class="logo" src="__LOGOTIPO__" alt="LivingSoiLL · Healthy Soil to Permanent Crops Living Labs">
         <h1>Cuaderno digital del LivingSoiLL<em>Living Lab Andaluz</em></h1>
         <p class="lede">
           La gesti&oacute;n del proyecto finca a finca: actuaciones y costes, muestreos,
