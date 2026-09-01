@@ -44,26 +44,28 @@ body{
   -webkit-font-smoothing:antialiased;
 }
 
-.marco{min-height:100vh; min-height:100dvh; display:grid; grid-template-rows:1fr auto}
-/* La foto del olivar cubre toda la puerta y se funde con el papel por los dos
-   lados; un velo por la izquierda mantiene legible el titular. */
-.hoja{display:grid; grid-template-columns:1.04fr .96fr; min-height:0; position:relative; background:var(--paper)}
+.marco{min-height:100vh; min-height:100dvh; display:grid}
+/* El olivar de Jaén a pantalla completa con un velo suave, y una única
+   tarjeta flotante con todo: marca, cifras y acceso. */
+.hoja{
+  position:relative; min-height:100vh; min-height:100dvh;
+  display:flex; align-items:center; padding:6vh 7vw; background:var(--paper);
+}
 .hoja::before{
   content:""; position:absolute; inset:0;
   background:url("__FOTO_PUERTA__") center / cover no-repeat;
-  -webkit-mask-image:linear-gradient(90deg, transparent 0, #000 18%, #000 82%, transparent 100%);
-  mask-image:linear-gradient(90deg, transparent 0, #000 18%, #000 82%, transparent 100%);
 }
 .hoja::after{
   content:""; position:absolute; inset:0;
-  background:linear-gradient(90deg, var(--paper) 32%, transparent 70%);
+  background:linear-gradient(100deg, rgba(8,16,11,.36), rgba(8,16,11,.10) 58%, rgba(8,16,11,.24));
 }
 
-.campo{
-  display:flex; flex-direction:column; justify-content:center;
-  padding:56px 6vw; position:relative; z-index:1;
+.panel{
+  position:relative; z-index:1; width:min(600px,100%);
+  background:var(--paper); border-radius:18px; padding:42px 46px 28px;
+  box-shadow:0 42px 100px -34px rgba(0,0,0,.62);
 }
-.campo-in{max-width:520px}
+.entrada{margin-top:26px; padding-top:22px; border-top:1px solid var(--line)}
 
 /* El logotipo completo (wordmark), a buen tamaño y sin caja alrededor. */
 .logo{display:block; width:min(360px,88%); height:auto; margin:0 0 30px}
@@ -103,15 +105,6 @@ h1 em{
   color:var(--ink-3); line-height:1.45;
 }
 
-.acceso{
-  display:flex; align-items:center; justify-content:center; padding:56px 5vw;
-  position:relative; z-index:1;
-}
-.acceso-in{
-  width:100%; max-width:392px; background:var(--paper); border-radius:12px;
-  padding:30px 28px 26px; box-shadow:0 28px 70px -26px rgba(0,0,0,.55);
-}
-
 .sello{
   font-family:"IBM Plex Mono",monospace; font-size:10px; font-weight:500; letter-spacing:.16em;
   text-transform:uppercase; color:var(--ink-3); margin:0 0 12px;
@@ -123,7 +116,6 @@ h2{
   font-family:"Fraunces",Georgia,serif; font-weight:600; font-variation-settings:"opsz" 40;
   font-size:31px; line-height:1.1; letter-spacing:-.022em; margin:0; color:var(--ink);
 }
-.acceso-lede{color:var(--ink-2); font-size:14.5px; line-height:1.6; margin:12px 0 0}
 
 button{font:inherit; cursor:pointer; border:0}
 .entrar{
@@ -192,49 +184,34 @@ button{font:inherit; cursor:pointer; border:0}
 
 
 @keyframes sube{from{opacity:0; transform:translateY(14px)} to{opacity:1; transform:none}}
-@keyframes crece{from{transform:scaleY(0)} to{transform:scaleY(1)}}
-.campo-in > *, .acceso-in > *{animation:sube .62s cubic-bezier(.22,.7,.3,1) both}
-.campo-in > :nth-child(1){animation-delay:.04s}
-.campo-in > :nth-child(2){animation-delay:.10s}
-.campo-in > :nth-child(3){animation-delay:.16s}
-.campo-in > :nth-child(4){animation-delay:.22s}
-.campo-in > :nth-child(5){animation-delay:.28s}
-.acceso-in > :nth-child(1){animation-delay:.16s}
-.acceso-in > :nth-child(2){animation-delay:.21s}
-.acceso-in > :nth-child(3){animation-delay:.26s}
-.acceso-in > :nth-child(4){animation-delay:.31s}
-.acceso-in > :nth-child(5){animation-delay:.34s}
-.acceso-in > :nth-child(n+6){animation-delay:.38s}
+.panel-in > *{animation:sube .62s cubic-bezier(.22,.7,.3,1) both}
+.panel-in > :nth-child(1){animation-delay:.04s}
+.panel-in > :nth-child(2){animation-delay:.10s}
+.panel-in > :nth-child(3){animation-delay:.16s}
+.panel-in > :nth-child(4){animation-delay:.22s}
+.panel-in > :nth-child(5){animation-delay:.28s}
+.panel-in > :nth-child(n+6){animation-delay:.34s}
 /* Si las animaciones no llegan a correr, el contenido aparece igual. */
-html.listo .campo-in > *,
-html.listo .acceso-in > *{animation:none !important}
+html.listo .panel-in > *{animation:none !important}
 
-@media (max-width:980px){
-  .hoja{grid-template-columns:1fr}
-  .campo{padding:40px 26px 34px; border-right:0; border-bottom:1px solid var(--line); justify-content:flex-start}
-  .campo-in{max-width:none}
-  .logo{width:120px; margin-bottom:24px}
-  .lede{display:none}
-  .acceso{padding:34px 26px 46px}
-  .acceso-in{max-width:420px}
+@media (max-width:640px){
+  .hoja{padding:16px}
+  .panel{padding:28px 24px 20px; border-radius:14px}
+  .logo{width:min(300px,94%); margin-bottom:22px}
+  h1{font-size:27px}
 }
-@media (min-width:981px) and (max-height:850px){
-  .campo{padding:40px 6vw}
-  .logo{width:128px; margin-bottom:24px}
-  h1{font-size:clamp(28px,3vw,38px)}
-  .lede{margin-top:18px; font-size:15px}
-  .cifras{margin-top:26px}
-  .cifras dt{font-size:24px}
-  .acceso{padding:40px 5vw}
-}
-@media (min-width:981px) and (max-height:700px){
-  .lede{display:none}
-  .logo{width:110px; margin-bottom:20px}
+@media (min-width:641px) and (max-height:820px){
+  .panel{padding:32px 40px 22px}
+  .logo{width:300px; margin-bottom:20px}
+  h1{font-size:clamp(26px,3vw,34px)}
+  .lede{margin-top:16px; font-size:14.5px}
+  .cifras{margin-top:22px; padding-top:14px}
+  .cifras dt{font-size:23px}
+  .entrada{margin-top:20px; padding-top:18px}
 }
 @media (max-width:420px){
-  .cifras > div{padding:0 18px}
+  .cifras > div{padding:0 16px}
   .cifras dd{font-size:10px; letter-spacing:.08em}
-  h2{font-size:27px}
 }
 
 @media (prefers-reduced-motion: reduce){
@@ -247,10 +224,10 @@ html.listo .acceso-in > *{animation:none !important}
 <div class="marco">
   <div class="hoja">
 
-    <section class="campo">
-      <div class="campo-in">
+    <section class="panel">
+      <div class="panel-in">
         <img class="logo" src="__LOGOTIPO__" alt="LivingSoiLL · Healthy Soil to Permanent Crops Living Labs">
-        <h1>Cuaderno digital del LivingSoiLL<em>Living Lab Andaluz</em></h1>
+        <h1>Cuaderno digital<em>Living Lab Andaluz</em></h1>
         <p class="lede">
           La gesti&oacute;n del proyecto finca a finca: actuaciones y costes, muestreos,
           propuestas de campa&ntilde;a, tareas por &aacute;rea, el equipo y la bit&aacute;cora.
@@ -260,16 +237,9 @@ html.listo .acceso-in > *{animation:none !important}
           <div><dt>42</dt><dd>zonas<br>test y control</dd></div>
           <div><dt>8</dt><dd>provincias<br>de Andaluc&iacute;a</dd></div>
         </dl>
-      </div>
-    </section>
 
-    <section class="acceso">
-      <div class="acceso-in">
-        <p class="sello">Acceso restringido</p>
-        <h2>Entrar</h2>
-        <p class="acceso-lede">
-          Acceso reservado al equipo del proyecto, con cuenta de Google autorizada.
-        </p>
+        <div class="entrada">
+        <p class="sello">Acceso reservado al equipo del proyecto</p>
 
         <button type="button" class="entrar" id="entrar">
           <span class="g" aria-hidden="true">
@@ -297,11 +267,9 @@ html.listo .acceso-in > *{animation:none !important}
         </div>
 
         <p class="msg" id="m" role="status" aria-live="polite"></p>
+        </div>
 
-
-        <p class="pie">
-          Universidad de Ja&eacute;n<br>Cuaderno digital del LivingSoiLL
-        </p>
+        <p class="pie">Universidad de Ja&eacute;n</p>
       </div>
     </section>
 
