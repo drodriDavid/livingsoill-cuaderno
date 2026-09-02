@@ -51,9 +51,22 @@ body{
   position:relative; min-height:100vh; min-height:100dvh;
   display:flex; padding:5vh 6vw; background:var(--paper);
 }
+/* La foto entra completa a lo ancho (sin recorte lateral = sin zoom); las
+   franjas restantes llevan un degradado con los colores de sus bordes y la
+   foto se desvanece contra ellas para que no haya costura. */
+:root{ --foto-olivar:url("__FOTO_PUERTA__"); }
+.hoja{background:linear-gradient(180deg, #D0DEFA 0%, #CBD9F1 40%, #5F5229 60%, #3E3619 100%)}
 .hoja::before{
   content:""; position:absolute; inset:0;
-  background:url("__FOTO_PUERTA__") center / cover no-repeat;
+  background:var(--foto-olivar) center / 100% auto no-repeat;
+  -webkit-mask-image:linear-gradient(180deg, transparent 0, #000 15%, #000 85%, transparent 100%);
+  mask-image:linear-gradient(180deg, transparent 0, #000 15%, #000 85%, transparent 100%);
+}
+@media (max-width:640px){
+  .hoja::before{
+    background:var(--foto-olivar) center / cover no-repeat;
+    -webkit-mask-image:none; mask-image:none;
+  }
 }
 .hoja::after{
   content:""; position:absolute; inset:0;
