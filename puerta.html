@@ -19,22 +19,6 @@
   --btn:#0A3D2B; --on-btn:#FFFFFF;
   --risk:#A63A25; --foco:#0A3D2B;
 }
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --paper:#0C1713; --paper-2:#14201B; --line:#26362E; --line-2:#1B2721;
-    --ink:#E7F0EA; --ink-2:#AFC2B7; --ink-3:#7F958A;
-    --suelo:#4FBF89; --brote:#5CD17F; --terron:#C09B82;
-    --btn:#DDEAE1; --on-btn:#0C1713;
-    --risk:#E58166; --foco:#5CD17F;
-  }
-}
-:root[data-theme="dark"]{
-  --paper:#0C1713; --paper-2:#14201B; --line:#26362E; --line-2:#1B2721;
-  --ink:#E7F0EA; --ink-2:#AFC2B7; --ink-3:#7F958A;
-  --suelo:#4FBF89; --brote:#5CD17F; --terron:#C09B82;
-  --btn:#DDEAE1; --on-btn:#0C1713;
-  --risk:#E58166; --foco:#5CD17F;
-}
 
 *{box-sizing:border-box}
 html,body{height:100%}
@@ -84,10 +68,6 @@ body{
 
 /* El logotipo completo (wordmark), a buen tamaño y sin caja alrededor. */
 .logo{display:block; width:min(360px,88%); height:auto; margin:0 0 30px}
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]) .logo{background:#FFFFFF; border-radius:8px; padding:12px 14px; margin-left:-14px}
-}
-:root[data-theme="dark"] .logo{background:#FFFFFF; border-radius:8px; padding:12px 14px; margin-left:-14px}
 
 .eyebrow{
   font-family:"IBM Plex Mono",monospace; font-size:10.5px; font-weight:500; letter-spacing:.17em;
